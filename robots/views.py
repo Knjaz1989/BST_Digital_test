@@ -16,7 +16,8 @@ class RobotsViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     serializer_class = robot_sr.RobotCreateSerializer
 
     def perform_create(self, serializer):
-        serial = f'{serializer.validated_data["model"]}-{serializer.validated_data["version"]}'
+        serial = f'{serializer.validated_data["model"]}-' \
+                 f'{serializer.validated_data["model"]}'
         serializer.save(serial=serial)
 
 
