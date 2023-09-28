@@ -16,11 +16,12 @@ class RobotsViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     serializer_class = robot_sr.RobotCreateSerializer
 
     def perform_create(self, serializer):
-        serial = f'{serializer.validated_data["model"]}-{serializer.validated_data["model"]}'
+        serial = f'{serializer.validated_data["model"]}-{serializer.validated_data["version"]}'
         serializer.save(serial=serial)
 
 
 class StatisticView(View):
+
     def get(self, request, *args, **kwargs):
         current_date = datetime.now().date()
         start_date = (
