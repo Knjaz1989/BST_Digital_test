@@ -27,6 +27,7 @@ router.register(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('statistic/', robots_views.StatisticView.as_view()),
 
     path('', include(router.urls)),
 
