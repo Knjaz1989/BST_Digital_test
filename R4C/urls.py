@@ -30,5 +30,4 @@ urlpatterns = [
     path('statistic/', robots_views.StatisticView.as_view()),
 
     path('', include(router.urls)),
-
 ]

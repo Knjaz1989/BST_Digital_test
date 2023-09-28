@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from robots.models import Robot
 
@@ -22,3 +25,10 @@ class RobotListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Robot
         fields = ["model", "version"]
+
+    def validate_created(self, value):
+        if value.timestamp() > datetime.now().timestamp():
+            raise ValidationError(
+                "datetime can't be more than current datetime"
+            )
+        return value
